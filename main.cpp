@@ -79,13 +79,13 @@ int LineFacet(point p1,point p2,point pa,point pb,point pc,point* p)
     double a1,a2,a3;
     double total,denom,mu;
     Vector n,pa1,pa2,pa3;
-    void Normalise(Vector&);
+    void Normalize(Vector&);
     
     /* Calculate the parameters for the plane */
     n.x = (pb.y - pa.y)*(pc.z - pa.z) - (pb.z - pa.z)*(pc.y - pa.y);
     n.y = (pb.z - pa.z)*(pc.x - pa.x) - (pb.x - pa.x)*(pc.z - pa.z);
     n.z = (pb.x - pa.x)*(pc.y - pa.y) - (pb.y - pa.y)*(pc.x - pa.x);
-    Normalise(n);
+    Normalize(n);
     d = - n.x * pa.x - n.y * pa.y - n.z * pa.z;
     
     /* Calculate the position on the line that intersects the plane */
@@ -103,15 +103,15 @@ int LineFacet(point p1,point p2,point pa,point pb,point pc,point* p)
     pa1.x = pa.x - p->x;
     pa1.y = pa.y - p->y;
     pa1.z = pa.z - p->z;
-    Normalise(pa1);
+    Normalize(pa1);
     pa2.x = pb.x - p->x;
     pa2.y = pb.y - p->y;
     pa2.z = pb.z - p->z;
-    Normalise(pa2);
+    Normalize(pa2);
     pa3.x = pc.x - p->x;
     pa3.y = pc.y - p->y;
     pa3.z = pc.z - p->z;
-    Normalise(pa3);
+    Normalize(pa3);
     a1 = pa1.x*pa2.x + pa1.y*pa2.y + pa1.z*pa2.z;
     a2 = pa2.x*pa3.x + pa2.y*pa3.y + pa2.z*pa3.z;
     a3 = pa3.x*pa1.x + pa3.y*pa1.y + pa3.z*pa1.z;
@@ -122,7 +122,7 @@ int LineFacet(point p1,point p2,point pa,point pb,point pc,point* p)
     return true;
 }
 
-void Normalise(Vector& t)
+void Normalize(Vector& t)
 {
     double lenght = sqrt((t.x * t.x) + (t.y * t.y) + (t.z * t.z)) ;
     t.x = t.x / lenght;
